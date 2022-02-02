@@ -1,34 +1,35 @@
+<script setup>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+import menu from '@/menu.js'
+import NavBar from '@/components/NavBar.vue'
+import AsideMenu from '@/components/AsideMenu.vue'
+import FooterBar from '@/components/FooterBar.vue'
+import Overlay from '@/components/Overlay.vue'
+
+const store = useStore()
+
+store.commit('aarshan', {
+  name: 'Abdalla AARshan',
+  email: 'abdullahiaarshan@gmail.com',
+  avatar: '#'
+})
+
+const isAsideLgActive = computed(() => store.state.isAsideLgActive)
+
+const overlayClick = () => {
+  store.dispatch('asideLgToggle', false)
+}
+</script>
+
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
+  <nav-bar />
+  <aside-menu :menu="menu" />
   <router-view />
+  <footer-bar />
+  <overlay
+    v-show="isAsideLgActive"
+    z-index="z-30"
+    @overlay-click="overlayClick"
+  />
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-
-h4 {
-  font-size: 20px;
-}
-</style>

@@ -1,30 +1,25 @@
-import { createRouter, createWebHistory } from "vue-router";
-import EventList from "../views/EventList.vue";
-import EventDetails from "../views/EventDetails.vue";
-import About from "../views/About.vue";
+import { createRouter, createWebHashHistory } from 'vue-router'
+import Home from '@/views/Home.vue'
 
 const routes = [
   {
-    path: "/",
-    name: "EventList",
-    component: EventList,
-  },
-  {
-    path: "/event/:id",
-    name: "EventDetails",
-    props: true,
-    component: EventDetails,
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: About,
-  },
-];
+    // Document title tag
+    // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
+    meta: {
+      title: 'Home'
+    },
+    path: '/',
+    name: 'home',
+    component: Home
+  }
+]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes,
-});
+  scrollBehavior (to, from, savedPosition) {
+    return savedPosition || { top: 0 }
+  }
+})
 
-export default router;
+export default router
