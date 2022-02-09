@@ -63,11 +63,7 @@ const menuClick = (event, item) => {
         />
       </nav-bar-item>
       <div class="flex-1 px-3">
-        <img
-          class="w-60"
-          src="../assets/waayeel.png"
-          alt=""
-          >
+        <span>Deymiye</span> <b class="font-black">App</b>
       </div>
     </div>
     <div>
